@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests;
+namespace App\Tests\Service;
 
-use App\Authenticity;
+use App\Service\Authenticity;
 use PHPUnit\Framework\TestCase;
 
-class TranslatorTest extends TestCase
+class AuthenticityTest extends TestCase
 {
     /** @var Authenticity */
     private $authenticity;
