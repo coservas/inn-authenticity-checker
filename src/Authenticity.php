@@ -1,25 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 class Authenticity
 {
-    const AUTHENTICITY_INNS = [
-        253402065152,
-        772739580300
+    public const AUTHENTICITY_INNS = [
+        '253402065152',
+        '772739580300'
     ];
 
-    const NON_AUTHENTICITY_INNS = [
-        784100362403,
-        332501373163
+    public const NON_AUTHENTICITY_INNS = [
+        '784100362403',
+        '332501373163'
     ];
 
-    /**
-     * @param string $inn
-     *
-     * @return array<string, mixed>
-     */
-    public function get($inn)
+    public function get(string $inn): array
     {
         if ($this->isAuthenticity($inn)) {
             return [
@@ -44,22 +41,13 @@ class Authenticity
         ];
     }
 
-    /**
-     * @param $inn
-     *
-     * @return bool
-     */
-    public function isAuthenticity($inn)
+    private function isAuthenticity(string $inn): bool
     {
-        return in_array((int) $inn, self::AUTHENTICITY_INNS, true);
+        return in_array($inn, self::AUTHENTICITY_INNS, true);
     }
 
-    /**
-     * @param $inn
-     * @return bool
-     */
-    public function isNonAuthenticity($inn)
+    private function isNonAuthenticity(string $inn): bool
     {
-        return in_array((int) $inn, self::NON_AUTHENTICITY_INNS, true);
+        return in_array($inn, self::NON_AUTHENTICITY_INNS, true);
     }
 }
