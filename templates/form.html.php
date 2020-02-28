@@ -42,7 +42,7 @@
                 disableSubmitButton()
                 enableSpinner()
             }
-        }, 100)
+        }, 50)
 
         checkAuthenticity()
             .then((e) => {
