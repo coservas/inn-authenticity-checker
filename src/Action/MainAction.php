@@ -6,8 +6,13 @@ namespace App\Action;
 
 class MainAction
 {
-    public function handle(): int
+    public function handle(): string
     {
-        return require_once 'templates/main.html.php';
+        ob_start();
+        require_once 'templates/main.html.php';
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        return (string) $content;
     }
 }

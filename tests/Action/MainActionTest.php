@@ -11,9 +11,7 @@ class MainActionTest extends TestCase
 {
     public function testHandle(): void
     {
-        ob_start();
         $actual = (new MainAction())->handle();
-        ob_end_clean();
-        $this->assertEquals(1, $actual);
+        $this->assertStringContainsString('form', $actual);
     }
 }
