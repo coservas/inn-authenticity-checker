@@ -47,11 +47,8 @@
         checkAuthenticity()
             .then((e) => {
                 if (e.authenticity !== undefined && e.authenticity) {
-                    console.log(e)
                     showSuccessMessage(e.message)
                 } else {
-                    console.log(e)
-
                     showErrorMessage(e.message)
                 }
             })
@@ -96,7 +93,12 @@
             xhr.open('POST', checkPath);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = () => {
-                resolve(JSON.parse(xhr.response));
+                try {
+                    let json = JSON.parse(xhr.response)
+                    resolve(json);
+                } catch (e) {
+                    resolve(xhr.response);
+                }
             };
             xhr.onerror = function () {
                 resolve(undefined);
@@ -106,12 +108,12 @@
         })
     }
 
-    function showSuccessMessage(msg = 'Неизвестная ошибка') {
+    function showSuccessMessage(msg = 'Неизвестная ошибка.') {
         message.textContent = msg
         message.style.color = 'green'
     }
 
-    function showErrorMessage(msg = 'Неизвестная ошибка') {
+    function showErrorMessage(msg = 'Неизвестная ошибка.') {
         message.textContent = msg
         message.style.color = 'red'
     }
